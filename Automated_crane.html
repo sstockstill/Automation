@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<!--
+
+Required PLC tags and Data Block Tags in STEP 7:
+
+PLC Tag:
+User_ID: Int
+
+Data Blocks:
+Web_Data
+
+Tags in Web_Data:
+Customer: String
+CraneModel: String
+BridgeDistance: Real
+TrolleyDistance: Real
+HoistLifts: Real
+HoistLoad: Real
+Temperature: Real
+HoistVFD: Real
+HoistOverride: Bool
+BridgeVFD: Real
+BridgeOverride: Bool
+TrolleyVFD: Real
+TrolleyOverride: Bool
+Braking: Real
+
+real_time_clock
+
+Tags in real_time_clock:
+real_time: DTL
+
+
+The user-defined Web page displays current values for the PLC data, and provides a select list to
+set the three booleans using an enumerated type assignment. The "Submit" button posts the selected boolean values
+as well as the data entry fields for BridgeVFD, TrolleyVFD, HoistVFD. The value for Braking can be set without
+use of the "Submit" button.
+
+No actual STEP 7 program is required to use this page. Theoretically, the STEP 7 program would only
+act on the values of BridgeVFD, TrolleyVFD, HoistVFD, if the associated booleans were set. The only STEP 7
+requirement is to call the WWW instruction with the DB number of the generated data blocks for this page.
+
+
+-->
+
+
+
+<!-- AWP_In_Variable Name='"Web_Data"' -->
+<!-- AWP_In_Variable Name='"Web_Data".HoistOverride' -->
+<!-- AWP_In_Variable Name='"Web_Data".TrolleyOverride' -->
+<!-- AWP_In_Variable Name='"Web_Data".BridgeOverride' -->
+
+<!-- AWP_In_Variable Name="SERVER:current_user_id" Use="User_ID"-->
+
+<!-- AWP_Enum_Def Name="OverrideStatus" Values='0:"Off",1:"On"' -->
+
+<!-- AWP_Enum_Ref Name='"Web_Data".HoistOverride' Enum="OverrideStatus" -->
+<!-- AWP_Enum_Ref Name='"Web_Data".TrolleyOverride' Enum="OverrideStatus" -->
+<!-- AWP_Enum_Ref Name='"Web_Data".BridgeOverride' Enum="OverrideStatus" -->
+
+<html style="height: 100%," lang="en-US">
+<head>
+	<title>Remote Automated Crane Monitor</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="Automated_crane.css">
+</head>
+<body>
+	<div><img src="images/deshazo_logo.jpg" alt="Deshazo Logo"></div>		
+	<table class="center" style="background-image: url('images/Automated_crane_02.jpg'); width: 800px; height: 600x;" cellpadding="0" cellspacing="2">
+		<tr style="height: 2%;">
+			<td colspan="2">
+				<h2>Remote Automated Crane Monitor: :="Web_Data".CraneModel: :="Web_Data".Customer:</h2>
+			</td>
+		</tr>	
+		<tr style="height: 2%;">
+			<td style="width: 24%;"><p>Bridge Distance Traveled:</p></td>
+			<td><p> :="Web_Data".BridgeDistance: m</p></td>
+		</tr>
+		<tr style="height: 2%;">
+			<td style="width: 24%;"><p>Trolley Distance Traveled:</p></td>
+			<td><p> :="Web_Data".TrolleyDistance: m</p></td>
+		</tr>
+		<tr style="height: 2%;">
+			<td style="width: 24%;"><p>Hoist Lifts:</p></td>
+			<td><p> :="Web_Data".HoistLifts: m </p></td>
+		</tr>
+		<tr style="height: 2%;">
+			<td style="width: 24%;"><p>Hoist Load:</p></td>
+			<td><p style="margin-bottom:5px;"> :="Web_Data".HoistLoad: kg</p></td>
+		</tr>
+		<form method="POST" action="">
+		<tr style="height: 2%;">
+			<td style="width: 24%; border-top-style: Solid; border-top-width: 2px; border-top-color: #ffffff;">
+				<p>Hoist override: :="Web_Data".HoistOverride:</p>
+			</td>
+			<td class="Text">Set:
+				<select name='"Web_Data".HoistOverride'>
+					<option value=':="Web_Data".HoistOverride:'> </option>
+					<option value="On">Yes</option>
+					<option value="Off">No</option>
+				</select>
+			</td>
+		</tr>
+		<tr style="vertical-align: top; height: 2%;">
+			<td style="width: 24%;"><p>Hoist VFD:</p></td>
+			<td>
+				<p style="margin-bottom:5px;">
+					<input name='"Web_Data".HoistVFD' size="10" value=':="Web_Data".HoistVFD:' type="text"> Hz
+				</p>
+			</td>
+		</tr>
+		<tr style="vertical-align: top; height: 2%;">
+			<td style="width: 24%;">
+				<p>Bridge override: :="Web_Data".BridgeOverride: </p>
+			</td>
+			<td class="Text">Set:
+				<select name='"Web_Data".BridgeOverride'>
+					<option value=':="Web_Data".BridgeOverride:'> </option>
+					<option value="On">Yes</option>
+					<option value="Off">No</option>
+				</select>
+			</td>
+		</tr>
+		<tr style="vertical-align: top; height: 2%;">
+			<td style="width: 24%;"><p>BridgeVFD:</p></td>
+			<td>
+				<p style="margin-bottom:5px;">
+					<input name='"Web_Data".BridgeVFD' size="10" value=':="Web_Data".BridgeVFD:' type="text"> Hz
+				</p>
+			</td>
+		</tr>
+		<tr style="vertical-align: top; height: 2%;">
+			<td style="width: 24%;">
+				<p>Trolley override: :="Web_Data".TrolleyOverride: </p>
+			</td>
+			<td class="Text">Set:
+				<select name='"Web_Data".TrolleyOverride'>
+					<option value=':="Web_Data".TrolleyOverride:'> </option>
+					<option value="On">Yes</option>
+					<option value="Off">No</option>
+				</select>
+			</td>
+		</tr>
+		<tr style="vertical-align: top; height: 2%;">
+			<td style="width: 24%; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #ffffff;">
+				<p>Trolley VFD:</p>
+			</td>
+			<td>
+				<p style="margin-bottom:5px;">
+					<input name='"Web_Data".TrolleyVFD' size="10" value=':="Web_Data".TrolleyVFD:' type="text"> Hz
+				</p>
+			</td>
+		</tr>
+		<tr style="height: 2%;">
+			<td colspan="2"><br>
+				<input type="submit" value="Submit override settings and values">
+			</td>
+		</tr>
+		</form>
+		<tr style="vertical-align: top; height: 2%;">
+			<td style="width: 24%;">
+				<p>Braking:</p>
+			</td>
+			<td>
+				<form method="POST" action="">
+					<p><input name='"Web_Data".Braking' size="10" value=':="Web_Data".Braking:' type="text"> %</p>
+				</form>
+			</td>
+		</tr>
+		<tr><td></td></tr>
+	</table>
+<div><a href="auto-adjust.htm" target="_blank">auto-adjust gauges<a/></div>
+</body>
+</html>
