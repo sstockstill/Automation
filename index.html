@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Run DMC Homepage</title>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="script/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="script/S7_framework.js"></script>
+		<script type="text/javascript" src="script/LogIn.js"></script>
+		<link rel="stylesheet" type="text/css" href="CSS/Style.css">
+	</head>
+	<body>
+		<table class="datatablehead">
+			<tr class="datatablerow">
+				<td class="datatablecoltitle" >Run DMC:</td>
+				<td class="datatablecoltext"  >Automated Crane Diagnostics.</td>
+			</tr>
+		</table>
+		
+		<div class="logo"><img src="deshazo_logo.jpg" alt="Deshazo Logo"></div>	
+
+		<div class="login">								<!-- Log IN Area -->
+			<iframe id="WebserverIFrame"
+			style="display:none" 
+			name="WebserverIFrame"
+			src="/Portal/Portal.mwsl">
+			</iframe>
+		<div id="loginBox"></div>					<!-- "Login_Area" is defined in S7Web.css for S7-1500 CPUs and S7-1200 FW2.2-->
+		</div>
+		
+		<hr>
+		<center style="width: 100%;">
+			<span class="links">
+				<a href="Read_Write_Table_Demo_05.html" target="_blank">Read and Write Table</a>
+				|
+				<a href="Graphing_Demo_12.html" target="_blank">Datalog Graphing</a>
+			</span>
+		</center>
+		<hr>
+
+		<div id="Clock">
+			date and time <!-- "date and time" is only shown if the iframe is not working -->
+		</div>
+		<iframe src="Update_Page.html" style="display:none;">
+	</body>
+</html>
