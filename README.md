@@ -1,4 +1,4 @@
 # Automation
 A Deshazo LLC Repository
 
-**[Contact](https://sstockstill.github.io/Automation/contact)**
+<sstockstill@deshazo.com>
