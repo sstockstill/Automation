@@ -2,6 +2,6 @@ layout: page
 title: "Contact"
 permalink: /contact/
 
-####Email
+#Email
 
 <sstockstill@deshazo.com>
