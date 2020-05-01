@@ -1,6 +1,6 @@
 layout: page
 title: "Contact"
-permalink: /Automation/Contact
+permalink: /contact/
 
 ####Email
 
