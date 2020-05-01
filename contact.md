@@ -2,6 +2,6 @@ layout: page
 title: "Contact"
 permalink: https://sstockstill.github.io/Automation/Contact
 
-###Email
+####Email
 
 <sstockstill@deshazo.com>
