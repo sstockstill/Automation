@@ -1,6 +1,6 @@
 layout: page
 title: "Contact"
-permalink: https://sstockstill.github.io/Automation/Contact
+permalink: /Contact
 
 ####Email
 
